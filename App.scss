@@ -1,0 +1,335 @@
+* {
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+@mixin setWidth($val) {
+  @if $val == half {
+    width: 50%;
+  } @else if $val == full {
+    width: 100%;
+  }
+}
+$a:red;
+.container-fluid {
+  position: absolute;
+  min-height: 100%;
+  padding: 30px;
+  font-family: monospace;
+}
+
+.Rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .Previewer,
+  .editor {
+    @include setWidth(half);
+    margin: 10px;
+  }
+  textarea {
+    resize: none;
+    height: 100%;
+  }
+
+  .fullscreen {
+    min-height: 90vh;
+    height: 100%;
+
+    textarea {
+      resize: none;
+      height: 100%;
+    }
+
+    .Previewer,
+    .editor {
+      @include setWidth(full);
+      margin: 0px;
+    }
+    .fa-columns,
+    .fa-swatchbook {
+      color: #4e5858;
+    }
+  }
+  .DEV{
+    display: none;
+  }
+}
+
+.Columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .editor {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    textarea {
+      height: 100%;
+      min-height: 200px;
+    }
+  }
+
+  .Previewer {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    margin-top: 10px;
+  }
+  .fullscreen {
+    min-height: 88vh;
+    height: 100%;
+    textarea {
+      resize: none;
+      height: 86vh;
+    }
+    .Previewer,
+    .editor {
+      @include setWidth(full);
+    }
+    .fa-columns,
+    .fa-swatchbook {
+      color: #4e5858;
+    }
+  }
+  .DEV{
+    display: block;
+    color: #4e5858;
+  }
+}
+
+.dark {
+  & {
+    background: #101d25;
+    color: white;
+  }
+  .header {
+    background: #232d36;
+    color: white;
+  }
+  textarea {
+    background: black;
+    color: white;
+  }
+  .Previewer {
+    background: black;
+  }
+  pre {
+    padding: 10px;
+    background: #333f3f;
+    font-weight: bold;
+  }
+}
+
+.light {
+  & {
+    background: white;
+    color: black;
+  }
+  .header {
+    background: black;
+  }
+  .Previewer {
+    background: white;
+  }
+}
+
+.header {
+  width: 100%;
+  height: 35px;
+  padding: 5px 0px 5px 10px;
+  position: relative;
+  color: white;
+  display: flex;
+}
+
+.editor,
+.Previewer {
+  box-shadow: 0px 0px 5px 2px black;
+  display: flex;
+  flex-direction: column;
+}
+
+.textBar {
+  padding: 10px;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.visibility {
+  display: none;
+}
+
+/*setting header functions slider & buttons */
+
+.fa-eye,
+.fa-pencil-alt {
+  margin: 5px 6px 0px 3px;
+}
+
+.slider {
+  padding: 15px;
+  width: 120px;
+  height: 20px;
+  display: flex;
+  position: absolute;
+  left: 99%;
+  top: 2px;
+  margin-left: -135px;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-right {
+  cursor: pointer;
+  position: absolute;
+  right: 95px;
+  animation: right 0.5s ease;
+  margin: 10px;
+}
+
+@keyframes right {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 95px;
+  }
+}
+
+.arrow-left {
+  cursor: pointer;
+  position: absolute;
+  left: 90px;
+  animation: left 0.5s ease;
+  margin: 8px;
+}
+
+@keyframes left {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 90px;
+  }
+}
+
+.functions {
+  position: relative;
+  display: flex;
+}
+
+.set {
+  cursor: pointer;
+  margin: 5px 5px 0px 5px;
+}
+
+a > .fa-chalkboard-teacher {
+  margin: 5px 0px 0px 5px;
+  color: white;
+}
+
+.set:hover {
+  color: rgba(209, 164, 196, 0.466);
+}
+
+a > .fa-chalkboard-teacher:hover {
+  color: rgba(209, 164, 196, 0.466);
+}
+
+.fa-expand:hover {
+  color: rgba(209, 164, 196, 0.466);
+}
+
+.fa-compress:hover {
+  color: rgba(209, 164, 196, 0.466);
+}
+
+/* Markdown style setting*/
+
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 2px solid #224b4b;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+pre {
+  background: #adb3b3;
+  font-weight: bold;
+}
+
+
+
+img{
+  max-width: 90%;
+  margin:2rem auto;
+  display: block;
+  
+}
+
+
+h1{
+  border-bottom: 4px solid rgb(56, 54, 54) ;
+}
+
+
+h2{
+  border-bottom: 2px solid rgb(56, 54, 54) ;
+}
+
+
+
+
+
+
+/*media quaries*/
+
+@media (max-width: 320px) {
+  .Previewer,
+  .editor {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 700px) {
+  .fa-columns,
+  .fa-swatchbook {
+    display: none;
+  }
+  .set {
+    cursor: pointer;
+    margin: 5px 5px 0px 0px;
+  }
+  .arrow-left {
+    right: 75px;
+    margin: -12px;
+  }
+  .arrow-right {
+    right: 75px;
+    margin: 18px;
+    animation: right 0.5s ease;
+  }
+
+  @keyframes right {
+    0% {
+      right: 0px;
+    }
+    100% {
+      right: 75px;
+    }
+  }
+  .slider {
+    margin-left: -115px;
+    .set {
+      cursor: pointer;
+      margin: 5px 5px 0px 0px;
+    }
+  }
+}
